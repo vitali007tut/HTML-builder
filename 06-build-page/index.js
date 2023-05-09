@@ -28,31 +28,17 @@ const handler2 = () => {
 
       fs.readdir(pathComponents, (err, files) => {
         if (err) throw err;
-        // console.log(files)
         files.forEach(file => fs.readFile(path.join(pathComponents, file), 'utf-8', (err, fileData) => {
           if (err) throw err;
           const findString = `{{${path.parse(file).name}}}`
-          // console.log(findString)
-          // console.log('template', template)
           console.log(findString, 'чтение fileData')
           let replaceString = ''
           template = template.replace(findString, fileData)
-          // console.log('template', template)
                       fs.writeFile(pathIndex, template, (err) => {
               if (err) throw err;
             })
-          // fs.readFile(pathIndex, 'utf-8', (err, data) => {
-          //   if (err) throw err;
-          //   replaceString = data.replace(findString, fileData)
-            // console.log('replaceString', replaceString)
-            // fs.writeFile(pathIndex, replaceString, (err) => {
-            //   if (err) throw err;
-            // })
-          // })
-          
         }))
       })
-
     })
   })
 }
@@ -63,78 +49,14 @@ const handler3 = () => {
     console.log(files)
     files.forEach(file => fs.readFile(path.join(pathComponents, file), 'utf-8', (err, fileData) => {
       if (err) throw err;
-      // console.log(fileData)
       console.log('чтение fileData')
-
     }))
   })
 }
 
-// const handler4 = () => {
-//   fs.rm(dirTarget, { recursive: true, force: true })
-// }
-
-
 emitter.on('start', handler1) // Папка была создана
 emitter.on('start', handler2) // Файл index.html создан
-// emitter.on('start', handler4)
-// emitter.on('start', handler3)
-// emitter.on('start', handler4)
-
 emitter.emit('start'); 
-
-// emitter.emit('index')
-
-// const readableStream = fs.createReadStream(path.join(__dirname, 'template.html'), 'utf-8');
-// let template = '';
-// readableStream.on('data', chunk => {
-//   template += chunk;
-// })
-// readableStream.on('end', () => console.log(template));
-
-// fs.mkdir(dirTarget, { recursive: true }, err => {
-//   if (err) throw err;
-//   console.log('Папка была создана');
-// })
-
-// fs.readFile(path.join(__dirname, 'template.html'), 'utf-8', (err, dataTemp) => {
-//   if (err) throw err;
-//   fs.writeFile(pathIndex, dataTemp, err => {
-//     if (err) throw err;
-//     console.log('Файл index.html создан');
-//   })
-// })
-
-
-  // fs.readFile(pathIndex, 'utf-8', (err, dataIndex) => {
-  //   if (err) throw err;
-  //   dataIndex.replace(`{{${path.parse(file).name}}}`, fileData);
-  // })
-
-
-
-
-// fs.promises.readdir(pathComponents/* , { withFileTypes: true } */)
-//   .then(files => {
-    // console.log(files)
-    // for (let file of files) {
-      // console.log(path.parse(file))
-      // читаею каждый файл компонентов
-      // fs.readFile(path.join(pathComponents, file), 'utf-8', (err, fileData) => {
-      //   if (err) throw err;
-      // const readableStream = fs.createReadStream(path.join(pathComponents, file), 'utf-8');
-      // let template = '';
-      // readableStream.on('data', chunk => {template += chunk;})
-      // readableStream.on('end', () => {
-      //   const reader = fs.readFile(pathIndex, 'utf-8', (err, dataIndex) => {
-      //     if (err) throw err;
-      //     return dataIndex.replace(`{{${path.parse(file).name}}}`, template);
-      //   })
-        // replaceHtml = dataTemp.replace(`{{${path.parse(file).name}}}`, template)
-  //     });
-  //   }
-    
-  // })
 
   // from task 5
   const wayStyles = path.join(__dirname, 'styles');
@@ -176,8 +98,6 @@ function makeDir() {
   });
 }
 function reCreateDir() {
-
-
   fs.rm(wayCopy, { recursive: true }, err => {
     if (err) throw err;
     // console.log('Папка "files-copy" была delete');
@@ -240,7 +160,6 @@ function listObjects(path){
         });
      }
   });
-  
 }
 
 function readDir(directory) {
