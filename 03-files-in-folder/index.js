@@ -14,7 +14,7 @@ fs.promises.readdir(way, { withFileTypes: true })
                 console.log(err);
               }
               else {
-                console.log(element.name, element.ext.slice(1), stats.size / 1000 + 'kb')
+                console.log(`${element.name} - ${element.ext.slice(1)} - ${stats.size / 1000}kb`);
               }
             })
           }
