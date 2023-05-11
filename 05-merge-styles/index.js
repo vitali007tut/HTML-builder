@@ -10,9 +10,9 @@ fs.access(wayBundleFile, error => {
       if (err) throw err;
     }
 )}
-  fs.truncate(wayBundleFile, err => {
-    if (err) throw err;
-  })
+  //fs.truncate(wayBundleFile, err => {
+  //  if (err) throw err;
+  //})
 })
 fs.readdir(wayStyles, (err, files) => {
   if (err) throw err;
